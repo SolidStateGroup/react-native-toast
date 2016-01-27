@@ -5,12 +5,13 @@ import android.view.Gravity;
 import com.facebook.common.logging.FLog;
 import com.facebook.react.bridge.*;
 
-public class Toast extends ReactContextBaseJavaModule implements LifecycleEventListener {
+public class Toast extends ReactContextBaseJavaModule /*implements LifecycleEventListener */
+{
 
     private android.widget.Toast mostRecentToast;
 
     // note that webView.isPaused() is not Xwalk compatible, so tracking it poor-man style
-    private boolean isPaused;
+    //private boolean isPaused;
 
     public Toast(ReactApplicationContext reactContext) {
         super(reactContext);
@@ -23,9 +24,9 @@ public class Toast extends ReactContextBaseJavaModule implements LifecycleEventL
 
     @ReactMethod
     public void show(ReadableMap options) throws Exception {
-        if (this.isPaused) {
+        /*if (this.isPaused) {
             return;
-        }
+        }*/
 
 
         final String message = options.getString("message");
@@ -64,11 +65,11 @@ public class Toast extends ReactContextBaseJavaModule implements LifecycleEventL
         }
     }
 
+    /*
     @Override
     public void initialize() {
         getReactApplicationContext().addLifecycleEventListener(this);
     }
-
 
     @Override
     public void onHostPause() {
@@ -87,4 +88,5 @@ public class Toast extends ReactContextBaseJavaModule implements LifecycleEventL
     public void onHostDestroy() {
         this.isPaused = true;
     }
+    */
 }
